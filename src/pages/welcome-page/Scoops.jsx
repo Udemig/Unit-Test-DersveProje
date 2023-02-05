@@ -17,8 +17,13 @@ const Scoops = () => {
       <div className="row d-flex gap-4">
         {cesitler.map((cesit) => (
           <div className="col-3" style={{ maxWidth: '350px' }}>
-            <img className="w-100 " src={cesit.imagePath} />
-            <label>{cesit.name}</label>
+            <img
+              id={cesit.name}
+              className="w-100 "
+              src={cesit.imagePath}
+              alt="cesit"
+            />
+            <label htmlFor={cesit.name}>{cesit.name}</label>
           </div>
         ))}
       </div>

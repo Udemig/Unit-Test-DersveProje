@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import OrderForm from './../OrderForm';
 
 test('checboxxa tıklandığında buton aktif olur', async () => {
+  //PROMİSE
   const user = userEvent.setup();
   //VDOM - Virtual DOM
   render(<OrderForm />);
@@ -20,6 +21,7 @@ test('checboxxa tıklandığında buton aktif olur', async () => {
   //sözeleşmeleri kabul eder
   await user.click(termsCheck);
   expect(orderBtn).toBeEnabled();
+
   //tekrar inaktif olur
   await user.click(termsCheck);
   expect(orderBtn).toBeDisabled(); //MATCHERS (eşletirci)

@@ -6,8 +6,11 @@ import Toppings from './Toppings';
 const WelcomePage = () => {
   return (
     <div>
+      {/* ÇEŞİTLER */}
       <Scoops />
+      {/*  SOSLAR */}
       <Toppings />
+      {/* FORM */}
       <OrderForm />
     </div>
   );
