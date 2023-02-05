@@ -19,6 +19,6 @@ test('soslar eklenip çıkarılıyor', async () => {
 
   expect(cesitlerFiyat).toHaveTextContent('4'); //matchers
 
-  await user.click(sos1);
+  await user(sos1);
   expect(cesitlerFiyat).toHaveTextContent('2');
 });
