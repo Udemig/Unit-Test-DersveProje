@@ -1,5 +1,6 @@
 import Scoops from './../Scoops';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 /*   
 ! Seçiciler
@@ -18,4 +19,23 @@ test('API den gelen her çeşit verisi için ekrana resim basar', async () => {
   //Çeşitlerde resimlerini bul
   const resimler = await screen.findAllByRole('img', { name: /cesit/i });
   expect(resimler).toHaveLength(4);
+});
+
+test('Çeşit ekleme işlemi', async () => {
+  const user = userEvent.setup();
+  render(<Scoops />);
+
+  //Sepet 0 tlde baişlar
+  const cesitlerFiyat = screen.getByTestId('ucret');
+  expect(cesitlerFiyat).toHaveTextContent('0');
+
+  //sepete çikltalı ekler
+  const [mintBtn, vanillaBtn, choBtn, caramelBtn] = await screen.findAllByRole(
+    'button',
+    { name: 'Ekle' }
+  );
+  await user.click(choBtn);
+
+  //sepetin durumu
+  expect(cesitlerFiyat).toHaveTextContent('3');
 });
