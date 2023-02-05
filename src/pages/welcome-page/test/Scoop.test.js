@@ -29,13 +29,40 @@ test('Çeşit ekleme işlemi', async () => {
   const cesitlerFiyat = screen.getByTestId('ucret');
   expect(cesitlerFiyat).toHaveTextContent('0');
 
-  //sepete çikltalı ekler
+  //bütün butonları seştik
   const [mintBtn, vanillaBtn, choBtn, caramelBtn] = await screen.findAllByRole(
     'button',
     { name: 'Ekle' }
   );
+
+  //sepete çikltalı ekler
   await user.click(choBtn);
 
   //sepetin durumu
   expect(cesitlerFiyat).toHaveTextContent('3');
+});
+
+test('sıfırlama işlemi', async () => {
+  const user = userEvent.setup();
+  render(<Scoops />);
+
+  //butonları seçtik
+  const [mintBtn, vanillaBtn, choBtn, caramelBtn] = await screen.findAllByRole(
+    'button',
+    { name: 'Ekle' }
+  );
+
+  await user.dblClick(caramelBtn);
+
+  //toplam ücret
+  const ucret = screen.getByTestId('ucret');
+  expect(ucret).toHaveTextContent('6');
+
+  //sıfırlama butonları
+  const [delMint, delVanilla, delCho, delCaramel] = await screen.findAllByRole(
+    'button',
+    { name: /sıfırla/i }
+  );
+  await user.click(delCaramel);
+  expect(ucret).toHaveTextContent('0');
 });
